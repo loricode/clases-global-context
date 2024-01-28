@@ -1,25 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import Nabvar from './components/Nabvar';
+import Card from './components/Card';
+
+//context
+import {useLanguage} from './context/languageContext';
+
+class Language {
+  dictionary = {
+    EN:{ title:"Title", description:"Description", name:"Name" },
+    ES:{ title:"Título", description:"Descripción", name:"Nombre" }
+  }
+}
+
+export let idiom = new Language();
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+ const { language } = useLanguage()
+
+ return (
+    <div>
+       <Nabvar/>
+       <h1>{idiom.dictionary[language].name}</h1>
+       <h4>{idiom.dictionary[language].description}</h4>
+       <Card/>
     </div>
-  );
+)
 }
 
 export default App;
